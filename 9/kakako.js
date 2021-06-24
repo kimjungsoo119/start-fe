@@ -1,66 +1,37 @@
-console.log('app');
+const $btn = document.querySelector('#search-btn');
+const $text = document.querySelector('#search-text');
+const $result = document.querySelector('#result');
 
-/* //Create
-var toods =['운동'];
-var todo = '게임';
-toods.push(todo);
-console.log(todos);
-//Read
-todos.forEach(function(todo){
-    console.log(todo);
-});
-//Update
-var arr = ['운동','게임'];
-var updateTodo = '게임';
-var updateIndex = todos.findIndex(function(todo) {
-  return todo === updateTodo;
-});
-todos[updateIndex] = '공부';
-console.log(todos);
-// Delete
-var todos = ['운동', '공부', '목욕'];
-var deleteTodo = '공부';
-var deleteIndex = todos.findIndex(function(todo) {
-  return todo === deleteTodo;
-});
-todos.splice(deleteIndex, 1);
-console.log(todos); */
+const url = 'https://dapi.kakao.com/v2/search/web';
+const headers = {Authorization:'KakaoAK 173d7bfb2cf816b963f79493d0adbc8b'
 
-/* var isMan = ture;
-if(isMan){
-    console.log('1');
 }
-else if (!isMan && isHero){
+function success(data) {
+    const {documents} = data;
+    const li = documents.map(
+      doc => {
+        return `<li class="list-group-item"><a href="${doc.url}" target="_blank"> ${doc.contents} </a></li>`
+    });
+
+    $result.innerHTML = `<ul class="list-group list-group-flush">${li.join('')}</ul>`
 }
-else {
-    console.log('2');
-} */
+function error() {
+    alert('데이터를 찾을 수 없어요.')
+}
 
-/* var count = [10,20,30,40,50,60,70,100,110,120];
-const result = count.reduce(function add(sum, currValue) {
-  return sum + currValue;
-}, 0);
-const average = result / count.length;
-console.log(average);  */
-
-function sumInput() {
-
-    let numbers = [];
-  
-    while (true) {
-  
-      input  = prompt("더 할 숫자를 입력해 주 세요.", 0);
-  
-      if (value === "" || value === null || !isFinite(value));
-  
-      numbers.push(+value);
+function search() {
+    const { value } = $text;
+    if(value == '' ){
+        alert('검색어를 입력하세요');
+        return false;
     }
-  
-    let sum = 0;
-    for (let number of numbers) {
-      sum += number;
-    }
-    return sum;
-  }
-  
-sumInput();
+
+    fetch(`${url}?query=${value}`, {headers})
+        .then((res) => res.json())
+        .then(success)
+        .catch(error);
+
+    return true;
+}
+
+$btn.addEventListener('click', search)

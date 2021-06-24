@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test</title>
-  </head>
-  <body>
-    Hello
-
-    <script src="app.js"></script>
-  </body>
-</html>
+GET https://dapi.kakao.com/v2/search/web?query=kakao
+Content-Type: application/json
+{
+    "Authorization": "KakaoAK 458ebf48468451dfefe1933df5df4554"
+}

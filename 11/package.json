@@ -1,13 +1,27 @@
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test</title>
-  </head>
-  <body>
-    Hello
-
-    <script src="app.js"></script>
-  </body>
-</html>
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "> 간단한 Todo 리스트 관리 웹어플리케이션을 만들어 본다",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --open",
+    "build": "webpack && cp dist/* ../docs"
+  },
+ "devDependencies": {
+    "css-loader": "^4.2.5",
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^5.11.1",
+    "html-webpack-plugin": "^4.3.1",
+    "style-loader": "^1.1.2",
+    "webpack": "^4.33.0",
+    "webpack-cli": "^4.4.10",
+    "webpack-dev-server": "^3.11.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^0.16.1"
+  }
+}

@@ -1,40 +1,17 @@
-var $select = null;
+const $result = document.querySelector('#result');
 
-function printBoards() {
-    var $board = document.getElementById("board");
-    var isWhite = false;
-    var className = '';
-    var boardLineCount = 4;
-    var str = '';
+function render(data) {
+    const html = data.map((todo, index) => {
+    return `<li data-index="${index}">
+    <button class="delete">×</button>
+    <input type="checkbox" class="toggle-checked" ${
+      todo.isDone ? 'checked': ''
+    }/>
+    <span class="text">${todo.text}</span>
+  </li>`;
+    });
 
-    for(var i=0; i<boardCount; i++) {
-        className = (isWhite) ? 'black' : 'white';
-        
-        str += '<span class = "className"></span>';
+  $result.innerHTML = `<ul>${html.join('')}</ul>`;
+} 
 
-        isWhite = !isWhite;
-
-        if (i % boardLineCount === boardLineCount-1) isWhite = !isWhite;
-    }
-    $board.innerHTML = str;
-}
-
-function select(event) {
-    if($select) {
-        $select.className = $select.className.replace(' select','');
-    }
-
-    var el = event.currentTarget;
-    el.className += ' select';
-    $select = el;
-}
-
-function addEvent() {
-    var $boards = document.querySelectorAll('span');
-    for (var i=0; i< $boards.length; i++) {
-        $boards[i].addEventListener('click',select);
-    }
-}
-
-printBoards();
-addEvent();
+export {render};
